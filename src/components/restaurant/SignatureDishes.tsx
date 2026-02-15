@@ -1,61 +1,67 @@
+import { motion, useInView } from "framer-motion";
+import { useRef } from "react";
 import dish1 from "@/assets/dish-1.jpg";
 import dish2 from "@/assets/dish-2.jpg";
 import dish3 from "@/assets/dish-3.jpg";
 import dish4 from "@/assets/dish-4.jpg";
 import dish5 from "@/assets/dish-5.jpg";
 import dish6 from "@/assets/dish-6.jpg";
-import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 
 const dishes = [
-  { name: "Seared Atlantic Salmon", desc: "Citrus beurre blanc, microgreens, edible flowers", img: dish1 },
-  { name: "Wagyu Tenderloin", desc: "Truffle jus, bone marrow butter, seasonal roots", img: dish2 },
-  { name: "Chocolate Sphere", desc: "Gold leaf, raspberry coulis, vanilla bean crème", img: dish3 },
-  { name: "Diver Scallops", desc: "Sweet pea purée, crispy prosciutto, lemon oil", img: dish4 },
-  { name: "Lobster Tail", desc: "Saffron butter, charred citrus, sea salt crystals", img: dish5 },
-  { name: "Duck Breast Rôti", desc: "Cherry reduction, heirloom carrots, thyme jus", img: dish6 },
+  { name: "Saffron Lamb Biryani", desc: "Slow-cooked with aged basmati, rose petals, and hand-pounded spices", img: dish1 },
+  { name: "Tandoori Lobster", desc: "Clay-oven roasted with Kashmiri chilli, smoked yoghurt, mint chutney", img: dish2 },
+  { name: "Gulab Jamun Tasting", desc: "Cardamom-kissed milk dumplings, pistachio dust, saffron reduction", img: dish3 },
+  { name: "Kerala Scallops", desc: "Coconut moilee, curry leaves, crispy shallots, tamarind glaze", img: dish4 },
+  { name: "Malabar Prawn Curry", desc: "Kokum-infused coconut broth, fresh turmeric, appam crisp", img: dish5 },
+  { name: "Duck Raan Confit", desc: "48-hour spiced slow roast, pomegranate raita, charred naan", img: dish6 },
 ];
 
 const SignatureDishes = () => {
-  const { ref, isVisible } = useScrollAnimation();
+  const ref = useRef(null);
+  const inView = useInView(ref, { once: true, margin: "-80px" });
 
   return (
-    <section id="dishes" className="py-32 px-6 bg-secondary/30" ref={ref}>
+    <section id="dishes" className="py-20 md:py-32 px-4 md:px-6 bg-secondary/30" ref={ref}>
       <div className="max-w-6xl mx-auto">
-        <div
-          className={`text-center mb-20 transition-all duration-1000 ${
-            isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
-          }`}
+        <motion.div
+          className="text-center mb-12 md:mb-20"
+          initial={{ opacity: 0, y: 30 }}
+          animate={inView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.8 }}
         >
-          <p className="text-sm tracking-[0.3em] uppercase text-muted-foreground mb-4">
-            The Menu
+          <p className="text-xs md:text-sm tracking-[0.3em] uppercase text-muted-foreground mb-4">
+            ✦ The Menu ✦
           </p>
-          <h2 className="font-serif text-4xl md:text-5xl font-medium text-foreground">
+          <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl font-medium text-foreground">
             Signature Creations
           </h2>
           <div className="w-16 h-px bg-accent mx-auto mt-6" />
-        </div>
+        </motion.div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
           {dishes.map((dish, i) => (
-            <div
+            <motion.div
               key={dish.name}
-              className={`group cursor-pointer transition-all duration-700 ${
-                isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
-              }`}
-              style={{ transitionDelay: `${i * 100 + 200}ms` }}
+              className="group cursor-pointer"
+              initial={{ opacity: 0, y: 40 }}
+              animate={inView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.7, delay: i * 0.1 }}
             >
-              <div className="overflow-hidden rounded-2xl mb-5">
-                <img
+              <div className="overflow-hidden rounded-2xl mb-4 md:mb-5">
+                <motion.img
                   src={dish.img}
                   alt={dish.name}
-                  className="w-full aspect-square object-cover transition-transform duration-700 group-hover:scale-105"
+                  className="w-full aspect-square object-cover"
+                  loading="lazy"
+                  whileHover={{ scale: 1.08 }}
+                  transition={{ duration: 0.5, ease: "easeOut" }}
                 />
               </div>
-              <h3 className="font-serif text-xl text-foreground mb-1">
+              <h3 className="font-serif text-lg md:text-xl text-foreground mb-1">
                 {dish.name}
               </h3>
-              <p className="text-sm text-muted-foreground">{dish.desc}</p>
-            </div>
+              <p className="text-xs md:text-sm text-muted-foreground">{dish.desc}</p>
+            </motion.div>
           ))}
         </div>
       </div>

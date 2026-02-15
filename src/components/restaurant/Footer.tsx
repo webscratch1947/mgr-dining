@@ -1,12 +1,14 @@
+import { motion } from "framer-motion";
+
 const Footer = () => {
   return (
-    <footer className="py-16 px-6 bg-foreground text-primary-foreground">
+    <footer className="py-12 md:py-16 px-4 md:px-6 bg-foreground text-primary-foreground">
       <div className="max-w-6xl mx-auto">
-        <div className="grid md:grid-cols-3 gap-12 mb-12">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 md:gap-12 mb-10 md:mb-12">
           <div>
-            <h3 className="font-serif text-2xl mb-4">Velora Dining</h3>
+            <h3 className="font-serif text-xl md:text-2xl mb-4">✦ Velora Dining</h3>
             <p className="text-primary-foreground/60 text-sm leading-relaxed">
-              An immersive culinary experience where tradition meets contemporary artistry.
+              An immersive Indian culinary experience where heritage meets contemporary artistry.
             </p>
           </div>
           <div>
@@ -14,14 +16,20 @@ const Footer = () => {
               Navigate
             </h4>
             <div className="space-y-2">
-              {["Our Story", "Menu", "Atmosphere", "Visit"].map((link) => (
-                <a
-                  key={link}
-                  href={`#${link.toLowerCase().replace(" ", "")}`}
+              {[
+                { label: "Our Story", href: "#about" },
+                { label: "Menu", href: "#dishes" },
+                { label: "Atmosphere", href: "#interior" },
+                { label: "Visit", href: "#location" },
+              ].map((link) => (
+                <motion.a
+                  key={link.label}
+                  href={link.href}
+                  whileHover={{ x: 4 }}
                   className="block text-sm text-primary-foreground/60 hover:text-primary-foreground transition-colors"
                 >
-                  {link}
-                </a>
+                  {link.label}
+                </motion.a>
               ))}
             </div>
           </div>
@@ -31,18 +39,19 @@ const Footer = () => {
             </h4>
             <div className="space-y-2">
               {["Instagram", "Facebook", "Twitter"].map((social) => (
-                <a
+                <motion.a
                   key={social}
                   href="#"
+                  whileHover={{ x: 4 }}
                   className="block text-sm text-primary-foreground/60 hover:text-primary-foreground transition-colors"
                 >
                   {social}
-                </a>
+                </motion.a>
               ))}
             </div>
           </div>
         </div>
-        <div className="border-t border-primary-foreground/10 pt-8 text-center">
+        <div className="border-t border-primary-foreground/10 pt-6 md:pt-8 text-center">
           <p className="text-xs text-primary-foreground/40 tracking-wider">
             © 2025 Velora Dining. All rights reserved.
           </p>

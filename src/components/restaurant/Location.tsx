@@ -1,40 +1,44 @@
-import { useScrollAnimation } from "@/hooks/useScrollAnimation";
+import { motion, useInView } from "framer-motion";
+import { useRef } from "react";
 import { MapPin, Clock } from "lucide-react";
 
 const Location = () => {
-  const { ref, isVisible } = useScrollAnimation();
+  const ref = useRef(null);
+  const inView = useInView(ref, { once: true, margin: "-80px" });
 
   return (
-    <section id="location" className="py-32 px-6 bg-secondary/30" ref={ref}>
+    <section id="location" className="py-20 md:py-32 px-4 md:px-6 bg-secondary/30" ref={ref}>
       <div className="max-w-4xl mx-auto">
-        <div
-          className={`text-center mb-16 transition-all duration-1000 ${
-            isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
-          }`}
+        <motion.div
+          className="text-center mb-12 md:mb-16"
+          initial={{ opacity: 0, y: 30 }}
+          animate={inView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.8 }}
         >
-          <p className="text-sm tracking-[0.3em] uppercase text-muted-foreground mb-4">
-            Find Us
+          <p className="text-xs md:text-sm tracking-[0.3em] uppercase text-muted-foreground mb-4">
+            ✦ Find Us ✦
           </p>
-          <h2 className="font-serif text-4xl md:text-5xl font-medium text-foreground">
+          <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl font-medium text-foreground">
             Visit Us
           </h2>
           <div className="w-16 h-px bg-accent mx-auto mt-6" />
-        </div>
+        </motion.div>
 
-        <div
-          className={`grid md:grid-cols-2 gap-12 transition-all duration-1000 delay-200 ${
-            isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
-          }`}
+        <motion.div
+          className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12"
+          initial={{ opacity: 0, y: 30 }}
+          animate={inView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.8, delay: 0.2 }}
         >
-          <div className="space-y-8">
+          <div className="space-y-6 md:space-y-8">
             <div className="flex gap-4">
               <MapPin className="w-5 h-5 text-accent mt-1 shrink-0" />
               <div>
                 <h3 className="font-serif text-lg text-foreground mb-1">Address</h3>
-                <p className="text-muted-foreground">
-                  42 Rue de l'Élégance
+                <p className="text-muted-foreground text-sm md:text-base">
+                  42 Connaught Place
                   <br />
-                  Paris, 75008, France
+                  New Delhi, 110001, India
                 </p>
               </div>
             </div>
@@ -42,26 +46,28 @@ const Location = () => {
               <Clock className="w-5 h-5 text-accent mt-1 shrink-0" />
               <div>
                 <h3 className="font-serif text-lg text-foreground mb-1">Hours</h3>
-                <div className="text-muted-foreground space-y-1">
-                  <p>Tuesday – Saturday: 18:00 – 23:00</p>
-                  <p>Sunday Brunch: 11:00 – 15:00</p>
+                <div className="text-muted-foreground space-y-1 text-sm md:text-base">
+                  <p>Tuesday – Sunday: 12:00 – 15:00 & 19:00 – 23:00</p>
                   <p>Monday: Closed</p>
                 </div>
               </div>
             </div>
           </div>
 
-          {/* Elegant map placeholder */}
-          <div className="aspect-square md:aspect-auto bg-card rounded-xl border border-border flex items-center justify-center">
+          <motion.div
+            className="aspect-square md:aspect-auto bg-card rounded-xl border border-border flex items-center justify-center min-h-[200px]"
+            whileHover={{ scale: 1.02 }}
+            transition={{ duration: 0.3 }}
+          >
             <div className="text-center p-8">
               <MapPin className="w-10 h-10 text-accent/40 mx-auto mb-4" />
-              <p className="font-serif text-foreground text-lg">Paris, France</p>
+              <p className="font-serif text-foreground text-lg">New Delhi, India</p>
               <p className="text-sm text-muted-foreground mt-1">
-                8th Arrondissement
+                Connaught Place
               </p>
             </div>
-          </div>
-        </div>
+          </motion.div>
+        </motion.div>
       </div>
     </section>
   );
