@@ -21,7 +21,7 @@ const SignatureDishes = () => {
   const inView = useInView(ref, { once: true, margin: "-80px" });
 
   return (
-    <section id="dishes" className="py-20 md:py-32 px-4 md:px-6 bg-secondary/30" ref={ref}>
+    <section id="dishes" className="py-20 md:py-32 px-5 md:px-6 bg-secondary/30" ref={ref}>
       <div className="max-w-6xl mx-auto">
         <motion.div
           className="text-center mb-12 md:mb-20"
@@ -35,10 +35,15 @@ const SignatureDishes = () => {
           <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl font-medium text-foreground">
             Signature Creations
           </h2>
-          <div className="w-16 h-px bg-accent mx-auto mt-6" />
+          <motion.div
+            className="w-16 h-px bg-accent mx-auto mt-6"
+            initial={{ scaleX: 0 }}
+            animate={inView ? { scaleX: 1 } : {}}
+            transition={{ duration: 0.8, delay: 0.3 }}
+          />
         </motion.div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+        <div className="grid grid-cols-2 lg:grid-cols-3 gap-4 md:gap-8">
           {dishes.map((dish, i) => (
             <motion.div
               key={dish.name}
@@ -46,8 +51,9 @@ const SignatureDishes = () => {
               initial={{ opacity: 0, y: 40 }}
               animate={inView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.7, delay: i * 0.1 }}
+              whileHover={{ y: -6 }}
             >
-              <div className="overflow-hidden rounded-2xl mb-4 md:mb-5">
+              <div className="overflow-hidden rounded-xl md:rounded-2xl mb-3 md:mb-5 shadow-sm group-hover:shadow-lg transition-shadow duration-500">
                 <motion.img
                   src={dish.img}
                   alt={dish.name}
@@ -57,10 +63,10 @@ const SignatureDishes = () => {
                   transition={{ duration: 0.5, ease: "easeOut" }}
                 />
               </div>
-              <h3 className="font-serif text-lg md:text-xl text-foreground mb-1">
+              <h3 className="font-serif text-sm md:text-xl text-foreground mb-0.5 md:mb-1">
                 {dish.name}
               </h3>
-              <p className="text-xs md:text-sm text-muted-foreground">{dish.desc}</p>
+              <p className="text-[11px] md:text-sm text-muted-foreground leading-snug">{dish.desc}</p>
             </motion.div>
           ))}
         </div>

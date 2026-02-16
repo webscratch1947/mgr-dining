@@ -3,7 +3,7 @@ import heroDish from "@/assets/hero-dish.jpg";
 
 const Hero = () => {
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-background px-4 md:px-6">
+    <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-background px-5 md:px-6">
       {/* Decorative elements */}
       <motion.div
         className="absolute top-20 left-10 w-48 md:w-72 h-48 md:h-72 rounded-full bg-accent/5 blur-3xl"
@@ -32,9 +32,9 @@ const Hero = () => {
         </svg>
       </motion.div>
 
-      <div className="relative z-10 max-w-6xl mx-auto w-full flex flex-col lg:flex-row items-center gap-8 md:gap-12 lg:gap-20 py-24 md:py-32">
+      <div className="relative z-10 max-w-6xl mx-auto w-full flex flex-col lg:flex-row items-center gap-10 md:gap-12 lg:gap-20 py-28 md:py-32">
         {/* Text */}
-        <div className="flex-1 text-center lg:text-left space-y-6 md:space-y-8">
+        <div className="flex-1 text-center lg:text-left space-y-5 md:space-y-8">
           <motion.p
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -47,17 +47,24 @@ const Hero = () => {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.9, delay: 0.4 }}
-            className="font-serif text-4xl md:text-6xl lg:text-7xl font-medium leading-[1.1] text-foreground"
+            className="font-serif text-5xl md:text-6xl lg:text-7xl font-medium leading-[1.05] text-foreground"
           >
             Velora
             <br />
-            <span className="text-accent">Dining</span>
+            <motion.span
+              className="text-accent inline-block"
+              initial={{ opacity: 0, x: -20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.8, delay: 0.7 }}
+            >
+              Dining
+            </motion.span>
           </motion.h1>
           <motion.p
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.6 }}
-            className="text-base md:text-lg text-muted-foreground max-w-md mx-auto lg:mx-0 leading-relaxed"
+            className="text-sm md:text-lg text-muted-foreground max-w-md mx-auto lg:mx-0 leading-relaxed"
           >
             Where Indian culinary heritage meets contemporary artistry — a symphony of spices, tradition, and innovation.
           </motion.p>
@@ -66,24 +73,26 @@ const Hero = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.8 }}
           >
-            <a
+            <motion.a
               href="#about"
-              className="inline-block border border-foreground px-6 md:px-8 py-3 md:py-4 text-xs md:text-sm tracking-[0.2em] uppercase text-foreground hover:bg-foreground hover:text-background transition-all duration-500"
+              className="inline-block border border-foreground px-7 md:px-8 py-3.5 md:py-4 text-xs md:text-sm tracking-[0.2em] uppercase text-foreground hover:bg-foreground hover:text-background transition-all duration-500"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.97 }}
             >
               Explore Our Story
-            </a>
+            </motion.a>
           </motion.div>
         </div>
 
         {/* Circular Image */}
         <motion.div
-          className="flex-1 flex justify-center"
+          className="flex-1 flex justify-center w-full"
           initial={{ opacity: 0, scale: 0.8, rotate: -5 }}
           animate={{ opacity: 1, scale: 1, rotate: 0 }}
           transition={{ duration: 1.2, delay: 0.5, ease: "easeOut" }}
         >
           <div className="relative">
-            <div className="w-56 h-56 md:w-80 md:h-80 lg:w-[26rem] lg:h-[26rem] rounded-full overflow-hidden shadow-2xl ring-1 ring-border">
+            <div className="w-64 h-64 md:w-80 md:h-80 lg:w-[26rem] lg:h-[26rem] rounded-full overflow-hidden shadow-2xl ring-1 ring-border">
               <img
                 src={heroDish}
                 alt="Signature Indian-inspired dish at Velora Dining"

@@ -25,7 +25,7 @@ const Testimonials = () => {
   const inView = useInView(ref, { once: true, margin: "-80px" });
 
   return (
-    <section className="py-20 md:py-32 px-4 md:px-6 bg-background" ref={ref}>
+    <section className="py-20 md:py-32 px-5 md:px-6 bg-background" ref={ref}>
       <div className="max-w-6xl mx-auto">
         <motion.div
           className="text-center mb-12 md:mb-20"
@@ -39,28 +39,33 @@ const Testimonials = () => {
           <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl font-medium text-foreground">
             Guest Impressions
           </h2>
-          <div className="w-16 h-px bg-accent mx-auto mt-6" />
+          <motion.div
+            className="w-16 h-px bg-accent mx-auto mt-6"
+            initial={{ scaleX: 0 }}
+            animate={inView ? { scaleX: 1 } : {}}
+            transition={{ duration: 0.8, delay: 0.3 }}
+          />
         </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-5 md:gap-8">
           {testimonials.map((t, i) => (
             <motion.div
               key={t.name}
-              className="bg-card p-6 md:p-8 rounded-xl shadow-sm border border-border"
+              className="bg-card p-5 md:p-8 rounded-xl shadow-sm border border-border"
               initial={{ opacity: 0, y: 30 }}
               animate={inView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.7, delay: i * 0.15 }}
-              whileHover={{ y: -5, boxShadow: "0 20px 40px -15px hsl(var(--accent) / 0.15)" }}
+              whileHover={{ y: -5, boxShadow: "0 20px 40px -15px hsl(38 60% 50% / 0.15)" }}
             >
-              <div className="flex gap-1 mb-4">
+              <div className="flex gap-1 mb-3 md:mb-4">
                 {Array.from({ length: t.stars }).map((_, j) => (
-                  <Star key={j} className="w-4 h-4 fill-accent text-accent" />
+                  <Star key={j} className="w-3.5 h-3.5 md:w-4 md:h-4 fill-accent text-accent" />
                 ))}
               </div>
-              <p className="text-muted-foreground leading-relaxed mb-6 italic text-sm md:text-base">
+              <p className="text-muted-foreground leading-relaxed mb-5 md:mb-6 italic text-xs md:text-base">
                 "{t.text}"
               </p>
-              <p className="font-serif text-foreground">{t.name}</p>
+              <p className="font-serif text-foreground text-sm md:text-base">{t.name}</p>
             </motion.div>
           ))}
         </div>
