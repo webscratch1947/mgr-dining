@@ -6,7 +6,7 @@ const Footer = () => {
       <div className="max-w-6xl mx-auto">
         <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 md:grid-cols-3 md:gap-12 mb-10 md:mb-12">
           <div>
-            <h3 className="font-serif text-xl md:text-2xl mb-3 md:mb-4">✦ Velora Dining</h3>
+            <h3 className="font-serif text-xl md:text-2xl mb-3 md:mb-4">✦ MGR Dining</h3>
             <p className="text-primary-foreground/60 text-xs md:text-sm leading-relaxed">
               An immersive Indian culinary experience where heritage meets contemporary artistry.
             </p>
@@ -53,7 +53,7 @@ const Footer = () => {
         </div>
         <div className="border-t border-primary-foreground/10 pt-6 md:pt-8 text-center">
           <p className="text-[10px] md:text-xs text-primary-foreground/40 tracking-wider">
-            © 2025 Velora Dining. All rights reserved.
+            © 2025 MGR Dining. All rights reserved.
           </p>
         </div>
       </div>
