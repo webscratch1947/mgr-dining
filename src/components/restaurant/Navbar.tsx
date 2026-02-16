@@ -39,7 +39,7 @@ const Navbar = () => {
       >
         <div className="max-w-7xl mx-auto px-5 md:px-6 flex items-center justify-between">
           <a href="#" className="font-serif text-base md:text-xl tracking-wider text-foreground">
-            ✦ Velora Dining
+            ✦ MGR Dining
           </a>
           {/* Desktop links */}
           <div className="hidden md:flex items-center gap-8">
@@ -97,7 +97,7 @@ const Navbar = () => {
               transition={{ delay: 0.4 }}
               className="text-xs text-muted-foreground tracking-widest mt-6"
             >
-              ✦ Velora Dining ✦
+              ✦ MGR Dining ✦
             </motion.div>
           </motion.div>
         )}
