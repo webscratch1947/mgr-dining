@@ -49,7 +49,7 @@ const Hero = () => {
             transition={{ duration: 0.9, delay: 0.4 }}
             className="font-serif text-5xl md:text-6xl lg:text-7xl font-medium leading-[1.05] text-foreground"
           >
-            Velora
+            MGR
             <br />
             <motion.span
               className="text-accent inline-block"
