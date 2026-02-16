@@ -9,8 +9,15 @@ const Interior = () => {
   const ref = useRef(null);
   const inView = useInView(ref, { once: true, margin: "-80px" });
 
+  const images = [
+    { src: interior1, alt: "Main dining area", className: "col-span-2 row-span-2 aspect-square" },
+    { src: interior2, alt: "Bar area", className: "col-span-1 aspect-[4/3]" },
+    { src: interior4, alt: "Table setting", className: "col-span-1 aspect-[4/3]" },
+    { src: interior3, alt: "Private dining", className: "col-span-2 aspect-[2/1]" },
+  ];
+
   return (
-    <section id="interior" className="py-20 md:py-32 px-4 md:px-6 bg-background" ref={ref}>
+    <section id="interior" className="py-20 md:py-32 px-5 md:px-6 bg-background" ref={ref}>
       <div className="max-w-6xl mx-auto">
         <motion.div
           className="text-center mb-12 md:mb-20"
@@ -24,16 +31,16 @@ const Interior = () => {
           <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl font-medium text-foreground">
             Designed for Experience
           </h2>
-          <div className="w-16 h-px bg-accent mx-auto mt-6" />
+          <motion.div
+            className="w-16 h-px bg-accent mx-auto mt-6"
+            initial={{ scaleX: 0 }}
+            animate={inView ? { scaleX: 1 } : {}}
+            transition={{ duration: 0.8, delay: 0.3 }}
+          />
         </motion.div>
 
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 md:gap-4">
-          {[
-            { src: interior1, alt: "Main dining area", className: "col-span-2 row-span-2" },
-            { src: interior2, alt: "Bar area", className: "col-span-2 lg:col-span-1" },
-            { src: interior4, alt: "Table setting", className: "" },
-            { src: interior3, alt: "Private dining", className: "col-span-2" },
-          ].map((img, i) => (
+          {images.map((img, i) => (
             <motion.div
               key={img.alt}
               className={`${img.className} overflow-hidden rounded-xl group`}

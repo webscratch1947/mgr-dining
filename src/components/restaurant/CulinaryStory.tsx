@@ -6,7 +6,7 @@ const CulinaryStory = () => {
   const inView = useInView(ref, { once: true, margin: "-80px" });
 
   return (
-    <section className="py-20 md:py-32 px-4 md:px-6 bg-secondary/30" ref={ref}>
+    <section className="py-20 md:py-32 px-5 md:px-6 bg-secondary/30" ref={ref}>
       <motion.div
         className="max-w-2xl mx-auto text-center"
         initial={{ opacity: 0, y: 40 }}
@@ -19,9 +19,14 @@ const CulinaryStory = () => {
         <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl font-medium text-foreground mb-6">
           The Art of Dining
         </h2>
-        <div className="w-16 h-px bg-accent mx-auto mb-8 md:mb-10" />
+        <motion.div
+          className="w-16 h-px bg-accent mx-auto mb-8 md:mb-10"
+          initial={{ scaleX: 0 }}
+          animate={inView ? { scaleX: 1 } : {}}
+          transition={{ duration: 0.8, delay: 0.3 }}
+        />
 
-        <div className="space-y-5 md:space-y-6 text-muted-foreground leading-relaxed text-base md:text-lg">
+        <div className="space-y-5 md:space-y-6 text-muted-foreground leading-relaxed text-sm md:text-lg">
           <motion.p
             initial={{ opacity: 0, y: 20 }}
             animate={inView ? { opacity: 1, y: 0 } : {}}
@@ -37,7 +42,7 @@ const CulinaryStory = () => {
             At Velora, tradition is not a constraint but a living conversation. We honour the masala-grinding rituals of Rajasthan while inviting the spontaneity of modern plating — an unexpected pairing, a texture reimagined, a presentation that surprises without spectacle.
           </motion.p>
           <motion.p
-            className="font-serif text-foreground italic text-xl md:text-2xl leading-snug pt-4"
+            className="font-serif text-foreground italic text-lg md:text-2xl leading-snug pt-4"
             initial={{ opacity: 0, scale: 0.95 }}
             animate={inView ? { opacity: 1, scale: 1 } : {}}
             transition={{ duration: 0.8, delay: 0.7 }}
